@@ -29,7 +29,7 @@ function SearchBox(){
                                     <ArrowBackIosSharpIcon size="small"/>
                               </IconButton>
                         </Grid>
-                        <Grid item> <span className="title">{title ? title : "No Name"}</span></Grid>
+                        <Grid item> <span className="title">{title ? title : "No title available"}</span></Grid>
                        
                   </Grid>
                   <Grid item container>

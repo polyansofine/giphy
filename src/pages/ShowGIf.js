@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 function SearchBox(){
       const { state } = useLocation();
-      const { title, url } = state;
+      const { title, url, realUrl } = state;
       const navigate = useNavigate();
       const prevPage = ()=>{
             navigate('/');
@@ -51,8 +51,8 @@ function SearchBox(){
                   </Grid>
                   <Grid item container justifyContent="space-between">
                         <Grid item xs={9} sx={{overflow:'hidden'}}>
-                              <h5 style={{padding:'0',margin:'0'}}>{title ? title : 'No name'}</h5>
-                              <h6 style={{padding:'0',margin:'0'}}>{url} </h6>
+                              <h5 style={{padding:'0',margin:'0'}}>{title ? title : 'No Title available'}</h5>
+                              <h6 style={{padding:'0',margin:'0'}}>{realUrl} </h6>
                         </Grid>
                         <Grid item xs={3} >
                               <Avatar sx={{p:1, width: 30, height: 30,ml:'auto' }}> +16

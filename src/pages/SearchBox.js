@@ -10,7 +10,6 @@ import searchApi from '../api/searchApi';
 import randomApi from '../api/randomApi';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
-import Check from '../assets/check.gif'
 import {useNavigate} from 'react-router-dom'
 
 import DataContext from '../context/context'
@@ -67,14 +66,14 @@ function SearchBox(){
       useEffect(()=>{
                   setInterval(() => {
                         randomApi().then(data => setRandomImageCollection(data));
-                  }, 5000);
+                  }, 10000);
       },[]);
 
-      const gotoShowGif=(selectTitle, selectUrl)=>{
-            console.log(selectTitle, selectUrl)
+      const gotoShowGif=(selectTitle, selectUrl, realUrl)=>{
+
             setDataText(searchText);
             setDataCollection(searchCollection);
-            navigate('/showgif', { state: { title: selectTitle, url: selectUrl } });
+            navigate('/showgif', { state: { title: selectTitle, url: selectUrl, realUrl: realUrl } });
       }
       return(
             <Grid
@@ -115,7 +114,6 @@ function SearchBox(){
                         
                         <img
                               src={item.images.fixed_height_small_still.url}
-                              srcSet={item.images.fixed_height_small_still.url}
                               alt={item.title}
                               loading="lazy"
                               style={{
@@ -124,7 +122,7 @@ function SearchBox(){
                                     maxHeight: '400px',
                                     maxWidth:'400px'
                               }}
-                              onClick={() => gotoShowGif(item.title, item.images.fixed_height_small_still.url)}
+                              onClick={() => gotoShowGif(item.title, item.images.fixed_height.url, item.url)}
                         />
                         </ImageListItem>
                         )))}
@@ -146,8 +144,8 @@ function SearchBox(){
                   </Grid>
                   {!status && <Grid item container justifyContent="space-between">
                         <Grid item xs={9} sx={{overflow:'hidden'}}>
-                              <h5 style={{padding:'0',margin:'0'}}>{randomImageColletion.title ? randomImageColletion.title : 'No name'}</h5>
-                              <h6 style={{padding:'0',margin:'0'}}>{randomImageColletion.url} </h6>
+                              <h5 style={{padding:'0',margin:'0'}}>{randomImageColletion.title ? randomImageColletion.title : 'No Title available'}</h5>
+                              <h6 style={{padding:'0',margin:'0'}}>{randomImageColletion.realUrl} </h6>
                         </Grid>
                         <Grid item xs={3} >
                               <Avatar sx={{p:1, width: 30, height: 30,ml:'auto' }}> +16
